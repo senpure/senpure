@@ -1,0 +1,4 @@
+org.springframework.boot.SpringApplicationRunListener=\
+  org.jline.reader.impl.LineReaderImplApplicationRunListener
+
+

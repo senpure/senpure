@@ -1,0 +1,7 @@
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.senpure.javafx.autoconfigure.JavafxAutoConfiguration,\
+  com.senpure.javafx.jfoenix.autoconfigure.JfoenixAutoConfiguration
+
+
+

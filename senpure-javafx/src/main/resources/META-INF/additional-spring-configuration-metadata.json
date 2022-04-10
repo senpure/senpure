@@ -1,0 +1,27 @@
+{
+  "properties": [
+    {
+      "name": "javafx.icons",
+      "defaultValue": [
+        "icon",
+        "icon_16x16",
+        "icon_24x24",
+        "icon_36x36",
+        "icon_42x42",
+        "icon_64x64"
+      ]
+    },
+    {
+      "name": "javafx.css",
+      "defaultValue": "app"
+    },
+    {
+      "name": "javafx.basenames",
+      "defaultValue": "i18n/app"
+    },
+    {
+      "name": "javafx.locale",
+      "defaultValue": "System"
+    }
+  ]
+}

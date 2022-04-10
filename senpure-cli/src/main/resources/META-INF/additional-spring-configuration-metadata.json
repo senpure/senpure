@@ -1,0 +1,11 @@
+{
+  "properties": [
+    {
+      "name": "senpure.ansi-console.install",
+      "defaultValue": true,
+      "type": "java.lang.Boolean",
+      "description": "是否安装ansi-console.",
+      "sourceType": "com.senpure.base.autoconfigure.CurrentSpringApplicationRunListener"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+org.springframework.boot.SpringApplicationRunListener=\
+  com.senpure.io.server.support.autoconfigure.GatewayMetadataCompletionRunListener,\
+  com.senpure.io.server.support.autoconfigure.ProviderMetadataCompletionRunListener
+
+
+
+
+
+

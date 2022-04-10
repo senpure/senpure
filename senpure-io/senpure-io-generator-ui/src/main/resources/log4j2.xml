@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" packages="com.senpure.io.generator.ui.appender.TextAreaAppender">
+    <Properties>
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_PATTERN">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{${LOG_LEVEL_PATTERN}}{magenta} %clr{---}{faint} %clr{[%20.20t]}{faint} %clr{%-40.40c{3.}}{cyan} %clr{:}{faint}%m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}
+        </Property>
+    </Properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <TextArea name="TextArea" >
+            <PatternLayout pattern="%d{HH:mm:ss} [%-5level] - %msg%n"/>
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+        </TextArea>
+        <RollingFile name="ROLLING" fileName="logs/generator.log"
+                     filePattern="logs/generator.%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="51200 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <!--  -->
+        <Logger name="org.eclipse.jetty" level="info"/>
+        <logger name="org.springframework" level="info"></logger>
+
+        <logger name="com.senpure.io" level="debug" >
+            <AppenderRef ref="TextArea" />
+        </logger>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+
+            <AppenderRef ref="ROLLING"/>
+        </Root>
+    </loggers>
+</configuration>

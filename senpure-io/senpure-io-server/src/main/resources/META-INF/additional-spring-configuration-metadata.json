@@ -1,0 +1,90 @@
+{
+  "groups": [
+    {
+      "name": "server.io.consumer",
+      "type": "com.senpure.io.server.ServerProperties.ConsumerProperties",
+      "sourceType": "com.senpure.io.server.ServerProperties",
+      "sourceMethod": "getConsumer()"
+    },
+    {
+      "name": "server.io.gateway",
+      "type": "com.senpure.io.server.ServerProperties.GatewayProperties",
+      "sourceType": "com.senpure.io.server.ServerProperties",
+      "sourceMethod": "getGateway()"
+    },
+    {
+      "name": "server.io.provider",
+      "type": "com.senpure.io.server.ServerProperties.ProviderProperties",
+      "sourceType": "com.senpure.io.server.ServerProperties",
+      "sourceMethod": "getProvider()"
+    }
+  ],
+  "hints": [
+    {
+      "name": "server.io.gateway.consumer.reader-idle-time",
+      "values": [
+        {
+          "value": 10000
+        },
+        {
+          "value": 20000
+        },
+        {
+          "value": 30000
+        },
+        {
+          "value": 60000
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "server.io.gateway.provier.reader-idle-time",
+      "values": [
+        {
+          "value": 10000
+        },
+        {
+          "value": 20000
+        },
+        {
+          "value": 30000
+        },
+        {
+          "value": 60000
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    },
+    {
+      "name": "server.io.provider.gateway.writer-idle-time",
+      "values": [
+        {
+          "value": 5000
+        },
+        {
+          "value": 10000
+        },
+        {
+          "value": 15000
+        },
+        {
+          "value": 30000
+        }
+      ],
+      "providers": [
+        {
+          "name": "any"
+        }
+      ]
+    }
+  ]
+}

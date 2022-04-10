@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="802.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.senpure.io.generator.ui.view.MainController">
+    <children>
+        <SplitPane prefHeight="37.0" prefWidth="781.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="34.0" prefWidth="505.0">
+                    <children>
+                        <Text layoutX="50.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="项目名" wrappingWidth="47.12109375" />
+                        <ChoiceBox fx:id="projectName" layoutX="119.0" layoutY="6.0" prefHeight="23.0" prefWidth="325.0" />
+                        <Button layoutX="666.0" layoutY="6.0" mnemonicParsing="false" onAction="#deleteProject" prefHeight="23.0" prefWidth="75.0" text="删除" />
+                        <SplitMenuButton layoutX="468.0" layoutY="6.0" mnemonicParsing="false" onAction="#updateProjectNameByChose" prefHeight="23.0" prefWidth="75.0" text="修改">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#updateProjectNameByChose" text="文件选择" />
+                                <MenuItem mnemonicParsing="false" onAction="#updateProjectName" text="输入名字" />
+                            </items>
+                        </SplitMenuButton>
+                        <SplitMenuButton layoutX="570.0" layoutY="6.0" mnemonicParsing="false" onAction="#createProjectByChose" prefHeight="23.0" prefWidth="75.0" text="新建">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#createProjectByChose" text="文件选择" />
+                                <MenuItem mnemonicParsing="false" onAction="#createProject" text="输入名字" />
+                        <MenuItem mnemonicParsing="false" onAction="#createProjectByCopy" text="复制当前" />
+                            </items>
+                        </SplitMenuButton>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <SplitPane dividerPositions="0.8" prefHeight="176.0" prefWidth="781.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="472.0">
+                    <children>
+                        <TableView fx:id="tableViewFileView" layoutX="3.0" layoutY="6.0" prefHeight="156.0" prefWidth="641.0">
+                            <columns>
+                                <TableColumn fx:id="tableName" prefWidth="117.0" text="文件名" />
+                                <TableColumn fx:id="tablePath" prefWidth="516.0" text="路径" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="142.0" prefWidth="136.0">
+                    <children>
+                        <Button layoutX="16.0" layoutY="10.0" mnemonicParsing="false" onAction="#addProtocolFile" prefHeight="23.0" prefWidth="101.0" text="增加文件" />
+                        <Button layoutX="16.0" layoutY="40.0" mnemonicParsing="false" onAction="#addProtocolDirectory" prefHeight="23.0" prefWidth="101.0" text="增加文件夹" />
+                        <Button layoutX="16.0" layoutY="70.0" mnemonicParsing="false" onAction="#removeFile" prefHeight="23.0" prefWidth="101.0" text="删除文件" />
+                        <Button layoutX="16.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeAllFile" prefHeight="23.0" prefWidth="101.0" text="清空文件" />
+                        <Button layoutX="16.0" layoutY="130.0" mnemonicParsing="false" onAction="#protocolView" prefHeight="23.0" prefWidth="101.0" text="预览协议" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <Accordion fx:id="accordionMessage" prefHeight="372.0" prefWidth="783.0">
+            <panes>
+                <TitledPane fx:id="titledPaneProtocolView" animated="false" text="message预览">
+                    <content>
+                        <SplitPane dividerPositions="0.8" prefHeight="193.0" prefWidth="781.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="516.0">
+                                    <children>
+                                        <TableView fx:id="tableViewProtocolView" layoutX="2.0" layoutY="3.0" onMouseClicked="#tableViewProtocolViewClick" prefHeight="316.0" prefWidth="641.0">
+                                            <columns>
+                                                <TableColumn fx:id="tableProtocolName" prefWidth="160.0" text="name" />
+                                                <TableColumn fx:id="tableProtocolType" prefWidth="90.0" text="类型" />
+                                                <TableColumn fx:id="tableProtocolExplain" prefWidth="315.0" text="备注" />
+                                                <TableColumn fx:id="tableProtocolCheckBok" prefWidth="46.0" text="生成" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="252.0">
+                                    <children>
+                                        <Button layoutX="14.0" layoutY="3.0" mnemonicParsing="false" onAction="#chooseBeanAndEnum" prefHeight="23.0" prefWidth="101.0" text="选择base" />
+                                        <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onAction="#chooseCSMessage" prefHeight="23.0" prefWidth="101.0" text="选择CS" />
+                                        <Button layoutX="14.0" layoutY="73.0" mnemonicParsing="false" onAction="#chooseSCMessage" prefHeight="23.0" prefWidth="101.0" text="选择SC" />
+                                        <Button layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#chooseEvent" prefHeight="23.0" prefWidth="101.0" text="选择event" />
+                                        <Button layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#chooseAll" prefHeight="23.0" prefWidth="101.0" text="全选/清空" />
+                                        <Button layoutX="14.0" layoutY="178.0" mnemonicParsing="false" onAction="#expandProtocolConfig" prefHeight="23.0" prefWidth="101.0" text="配置面板" />
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </content>
+                </TitledPane>
+                <TitledPane fx:id="titledPaneProtocolConfig" animated="false" prefHeight="321.0" prefWidth="783.0" text="message配置">
+                    <content>
+                        <TabPane fx:id="tabPaneConfig" prefHeight="171.0" prefWidth="781.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="java  ">
+                                    <content>
+                                        <VBox prefHeight="302.0" prefWidth="781.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.8" prefHeight="295.0" prefWidth="781.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="650.0">
+                                                            <children>
+                                                                <GridPane layoutY="1.0" prefHeight="290.0" prefWidth="635.0">
+                                                                    <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="0.0" prefWidth="21.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="141.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="231.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="7.0" prefWidth="11.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="48.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.0" minWidth="3.0" prefWidth="7.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.0" minWidth="8.0" prefWidth="69.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="19.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="16.0" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="协议根路径" wrappingWidth="98.12109375" GridPane.columnIndex="1" />
+                                                                        <Text layoutX="30.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="csHandler根路径" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <TextField fx:id="textFieldJavaCSMessageHandlerCodeRootPath" editable="false" layoutX="139.0" layoutY="44.0" GridPane.columnIndex="2" GridPane.columnSpan="6" GridPane.rowIndex="1" />
+                                                                        <Label prefHeight="15.0" prefWidth="60.0" text="enum" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                        <ChoiceBox fx:id="choiceJavaEnum" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                        <Label prefHeight="15.0" prefWidth="60.0" text="bean" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                                        <ChoiceBox fx:id="choiceJavaBean" prefHeight="23.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                                        <Label prefHeight="15.0" prefWidth="60.0" text="message" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                                        <Label prefHeight="15.0" prefWidth="60.0" text="event" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                                        <ChoiceBox fx:id="choiceJavaMessage" prefHeight="23.0" prefWidth="254.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                                        <ChoiceBox fx:id="choiceJavaEvent" prefHeight="23.0" prefWidth="372.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                                                        <Label prefHeight="15.0" prefWidth="132.0" text="csMessageHandler" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                                        <ChoiceBox fx:id="choiceJavaCSMessageHandler" prefHeight="23.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                                                        <TextField fx:id="textFieldJavaProtocolCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" />
+                                                                        <CheckBox fx:id="checkJavaEnum" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                                                        <CheckBox fx:id="checkJavaBean" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                                                        <CheckBox fx:id="checkJavaMessage" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                                                        <CheckBox fx:id="checkJavaEvent" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                                                                        <CheckBox fx:id="checkJavaCSMessageHandler" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                                                                        <CheckBox fx:id="checkJavaCSMessageHandlerOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+                                                                        <Label prefHeight="15.0" prefWidth="101.0" text="eventHandler" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                                                        <ChoiceBox fx:id="choiceJavaEventHandler" prefHeight="23.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                                                                        <CheckBox fx:id="checkJavaEventHandler" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+                                                                        <CheckBox fx:id="checkJavaEventHandlerOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="scHandler根路径" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="eventHandler根路径" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                        <TextField fx:id="textFieldJavaSCMessageHandlerCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" GridPane.rowIndex="2" />
+                                                                        <TextField fx:id="textFieldJavaEventHandlerCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" GridPane.rowIndex="3" />
+                                                                        <Label prefHeight="15.0" prefWidth="132.0" text="scMessageHandler" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                                                        <ChoiceBox fx:id="choiceJavaSCMessageHandler" prefHeight="23.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                                                                        <CheckBox fx:id="checkJavaSCMessageHandler" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                                                                        <CheckBox fx:id="checkJavaSCMessageHandlerOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+                                                                    </children>
+                                                                </GridPane>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="195.0">
+                                                            <children>
+                                                                <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#choiceJavaProtocolCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#choiceJavaCSMessageHandlerCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#choiceJavaSCMessageHandlerCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#choiceJavaEventHandlerCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#generateJavaCode" prefHeight="23.0" prefWidth="109.0" text="生成代码" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                                <Tab text="lua    ">
+                                    <content>
+
+                                        <VBox prefHeight="302.0" prefWidth="781.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.8" prefHeight="295.0" prefWidth="781.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="650.0">
+                                                            <children>
+                                                                <GridPane layoutY="1.0" prefHeight="290.0" prefWidth="635.0">
+                                                                    <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="0.0" prefWidth="21.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="141.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="231.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="7.0" prefWidth="11.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="48.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.0" minWidth="3.0" prefWidth="7.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.0" minWidth="8.0" prefWidth="69.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="19.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="16.0" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="协议根路径" wrappingWidth="98.12109375" GridPane.columnIndex="1" />
+                                                                        <Label prefHeight="15.0" prefWidth="60.0" text="协议" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                        <ChoiceBox fx:id="choiceLuaProtocol" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                                        <TextField fx:id="textFieldLuaProtocolCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" />
+                                                                        <CheckBox fx:id="checkLuaProtocol" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="scHandler根路径" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <TextField fx:id="textFieldLuaSCMessageHandlerCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" GridPane.rowIndex="1" />
+                                                                        <Label prefHeight="15.0" prefWidth="132.0" text="scMessageHandler" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                        <ChoiceBox fx:id="choiceLuaSCMessageHandler" prefHeight="23.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                        <CheckBox fx:id="checkLuaSCMessageHandler" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                                                        <CheckBox fx:id="checkLuaSCMessageHandlerOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="require" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                                        <ChoiceBox fx:id="choiceLuaRequire" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                                        <CheckBox fx:id="checkLuaRequire" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                                                        <CheckBox fx:id="checkLuaRequireOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="协议模式" wrappingWidth="98.12109375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                        <ChoiceBox fx:id="choiceLuaType" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                                        <CheckBox fx:id="checkLuaAppendNamespace" mnemonicParsing="false" prefHeight="16.0" prefWidth="107.0" text="追加命名空间" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                                                                    </children>
+                                                                </GridPane>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="195.0">
+                                                            <children>
+                                                                <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#choiceLuaProtocolCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onAction="#choiceLuaSCMessageHandlerCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#generateLuaCode" prefHeight="23.0" prefWidth="109.0" text="生成代码" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </VBox>
+
+                                    </content>
+                                </Tab>
+                                <Tab text="js     ">
+                                    <content>
+
+                                        <VBox prefHeight="302.0" prefWidth="781.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.8" prefHeight="295.0" prefWidth="781.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="650.0">
+                                                            <children>
+                                                                <GridPane layoutY="1.0" prefHeight="290.0" prefWidth="635.0">
+                                                                    <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="0.0" prefWidth="21.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="141.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="231.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="7.0" prefWidth="11.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="48.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.0" minWidth="3.0" prefWidth="7.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="605.0" minWidth="8.0" prefWidth="69.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="19.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="16.0" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                    <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="协议根路径" wrappingWidth="98.12109375" GridPane.columnIndex="1" />
+                                                                        <Label prefHeight="15.0" prefWidth="60.0" text="协议" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                        <ChoiceBox fx:id="choiceJsProtocol" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                        <TextField fx:id="textFieldJsProtocolCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" />
+                                                                        <CheckBox fx:id="checkJsProtocol" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="scHandler根路径" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                        <TextField fx:id="textFieldJsSCMessageHandlerCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" GridPane.rowIndex="2" />
+                                                                        <Label prefHeight="15.0" prefWidth="132.0" text="scMessageHandler" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                                        <ChoiceBox fx:id="choiceJsSCMessageHandler" prefHeight="23.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                                        <CheckBox fx:id="checkJsSCMessageHandler" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                                                        <CheckBox fx:id="checkJsSCMessageHandlerOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="require" wrappingWidth="140.12109375" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                                        <ChoiceBox fx:id="choiceJsRequire" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                                                        <CheckBox fx:id="checkJsRequire" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                                                                        <CheckBox fx:id="checkJsRequireOverwrite" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="覆盖" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="协议模式" wrappingWidth="98.12109375" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                        <ChoiceBox fx:id="choiceJsType" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                                        <CheckBox fx:id="checkJsAppendNamespace" mnemonicParsing="false" prefHeight="16.0" prefWidth="107.0" text="追加命名空间" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="d.ts根路径" wrappingWidth="98.12109375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="textFieldJsDtsCodeRootPath" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="6" GridPane.rowIndex="1" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="d.ts" wrappingWidth="98.12109375" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                      <ChoiceBox fx:id="choiceJsDts" prefHeight="23.0" prefWidth="437.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                      <CheckBox fx:id="checkJsDts" mnemonicParsing="false" prefHeight="16.0" prefWidth="68.0" text="生成" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                                                    </children>
+                                                                </GridPane>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="195.0">
+                                                            <children>
+                                                                <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#choiceJsProtocolCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#choiceJsDtsCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#choiceJsSCMessageHandlerCodeRootPath" prefHeight="23.0" prefWidth="109.0" text="选择路径" />
+                                                                <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#generateJsCode" prefHeight="23.0" prefWidth="109.0" text="生成代码" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </VBox>
+
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </content>
+                </TitledPane>
+            </panes>
+        </Accordion>
+        <SplitPane dividerPositions="0.8" prefHeight="200.0" prefWidth="781.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="657.0">
+                    <children>
+                        <TextArea fx:id="textAreaLog" layoutY="6.0" prefHeight="186.0" prefWidth="641.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <Button layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#openLog" prefHeight="23.0" prefWidth="101.0" text="查看详细日志" />
+                        <Button layoutX="11.0" layoutY="106.0" mnemonicParsing="false" onAction="#clearLog" prefHeight="23.0" prefWidth="101.0" text="清空日志" />
+                        <Button fx:id="btnDelRecord" layoutX="11.0" layoutY="161.0" mnemonicParsing="false" onAction="#delRecordFile" onKeyReleased="#btnDelRecordKeyRelease" prefHeight="23.0" prefWidth="101.0" text="删除记录文件" visible="false" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+
+</VBox>
